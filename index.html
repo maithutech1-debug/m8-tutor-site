@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>M8 Tutor Centre</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>M8 Tutor Centre</h1>
+      <p class="tagline">High-quality tutoring and personalised learning — owned by organisation M8</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <h2>About Us</h2>
+      <p>M8 Tutor Centre provides tutoring for students of all ages in maths, science, languages and more. Our experienced tutors deliver personalised lessons to help learners reach their goals.</p>
+    </section>
+
+    <section id="services">
+      <h2>Services</h2>
+      <ul>
+        <li>One-on-one tutoring</li>
+        <li>Group classes</li>
+        <li>Exam preparation</li>
+        <li>Online & in-person sessions</li>
+      </ul>
+    </section>
+
+    <section id="advertise">
+      <h2>Advertise with Us</h2>
+      <p>Reach families and learners who visit M8 Tutor Centre. We offer banner ads, sponsored posts, and partnership opportunities. Contact us using the application form below and write "Advertise" in the message.</p>
+      <div class="ad-examples">
+        <div class="ad-card">
+          <h3>Banner ad</h3>
+          <p>Location on homepage, monthly price based on reach.</p>
+        </div>
+        <div class="ad-card">
+          <h3>Sponsored class</h3>
+          <p>Promote your workshop or course to our mailing list and website visitors.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply">
+      <h2>Application / Contact Form</h2>
+      <p>Use this form to apply for tutoring, enquire about adverts, or contact M8.</p>
+
+      <!--
+        Option A: Formspree (recommended for no-backend quick setup)
+        1) Sign up at https://formspree.io and create a new form.
+        2) Set the recipient email to tradergmailcom744@gmail.com on Formspree.
+        3) Replace the action URL below with your Formspree form endpoint (https://formspree.io/f/yourFormId).
+      -->
+      <form id="applicationForm" method="POST" action="https://formspree.io/f/yourFormId">
+        <label>
+          Full name
+          <input type="text" name="name" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+
+        <label>
+          Phone
+          <input type="tel" name="phone" />
+        </label>
+
+        <label>
+          I am contacting about
+          <select name="reason">
+            <option value="tutoring">Tutoring</option>
+            <option value="advertise">Advertise</option>
+            <option value="partnership">Partnership</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+
+        <!-- Optional Formspree fields; you can remove if using a custom backend -->
+        <input type="hidden" name="_subject" value="M8 Website Application" />
+        <input type="hidden" name="_replyto" value="" />
+
+        <button type="submit">Send Application</button>
+      </form>
+
+      <div id="formMessage" aria-live="polite" class="form-message"></div>
+
+      <p class="note">If you prefer your email client to open with the filled content, click <a id="mailtoLink" href="#">here</a>.</p>
+    </section>
+
+    <section id="contact-info">
+      <h2>Owner & Contact</h2>
+      <p>Owner: organisation M8</p>
+      <p>Primary application recipient (email): tradergmailcom744@gmail.com</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; <span id="year"></span> M8 Tutor Centre — Public website</small>
+    </div>
+  </footer>
+
+  <script>
+    // Small script: show year and handle form UI feedback.
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const form = document.getElementById('applicationForm');
+    const messageDiv = document.getElementById('formMessage');
+    const mailtoLink = document.getElementById('mailtoLink');
+
+    // mailto fallback that pre-fills an email in the user's email client
+    mailtoLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      const name = encodeURIComponent(form.name.value || '');
+      const email = encodeURIComponent(form.email.value || '');
+      const phone = encodeURIComponent(form.phone.value || '');
+      const reason = encodeURIComponent(form.reason.value || '');
+      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + '\nReason: ' + reason + '\n\nMessage:\n' + (form.message.value || ''));
+      const mailto = 'mailto:tradergmailcom744@gmail.com?subject=' + encodeURIComponent('M8 Website Application') + '&body=' + body;
+      window.location.href = mailto;
+    });
+
+    // Optional: intercept submission to show a friendly message for Formspree or custom backends.
+    form.addEventListener('submit', function (e) {
+      // If using Formspree or another form endpoint that returns JSON, the normal POST will navigate away.
+      // We show an immediate UI confirmation. For a real AJAX send you would use fetch() to the endpoint.
+      messageDiv.textContent = 'Sending — please wait...';
+      setTimeout(() => {
+        messageDiv.textContent = 'If your browser navigates away, the form was sent. If not, check your email configuration or use the mailto link.';
+      }, 800);
+    });
+  </script>
+</body>
+</html>

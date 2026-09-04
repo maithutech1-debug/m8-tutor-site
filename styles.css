@@ -1,0 +1,33 @@
+:root{
+  --brand:#1e73be;
+  --muted:#666;
+  --bg:#f7f9fb;
+  --card:#fff;
+}
+*{box-sizing:border-box}
+body{
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin:0;
+  color:#222;
+  background:var(--bg);
+  line-height:1.5;
+}
+.container{max-width:980px;margin:0 auto;padding:1.25rem}
+.site-header{background:linear-gradient(90deg,var(--brand),#3aa0e6);color:#fff;padding:1.25rem 0}
+.site-header h1{margin:0;font-size:1.75rem}
+.tagline{opacity:0.95;margin-top:.25rem}
+h2{margin-top:1.25rem}
+section{margin-bottom:1.25rem;background:var(--card);padding:1rem;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06)}
+.ad-examples{display:flex;gap:1rem;flex-wrap:wrap}
+.ad-card{flex:1;min-width:180px;padding:.75rem;border-radius:6px;background:#f3fbff;border:1px solid rgba(30,115,190,0.08)}
+form label{display:block;margin-bottom:.75rem}
+input[type="text"], input[type="email"], input[type="tel"], textarea, select{
+  width:100%;padding:.5rem;border:1px solid #ddd;border-radius:6px;margin-top:.35rem;
+}
+button{background:var(--brand);color:#fff;padding:.6rem .9rem;border:0;border-radius:6px;cursor:pointer}
+.form-message{margin-top:.75rem;color:var(--muted)}
+.note{font-size:0.9rem;color:var(--muted)}
+.site-footer{padding:1rem 0;text-align:center;color:var(--muted);font-size:.9rem}
+@media(min-width:880px){
+  .ad-examples{flex-wrap:nowrap}
+}
